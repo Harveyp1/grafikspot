@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Account - The Grafik Spot</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -65,6 +66,23 @@
                 <h1 id="admin-welcome" class="text-3xl font-bold text-white"></h1>
                 <button id="admin-logout-btn" class="bg-logo-pink text-white font-semibold py-2 px-4 rounded-lg hover:bg-logo-pink-dark transition-colors">Logout</button>
             </div>
+            
+            <!-- Sales Statistics Section -->
+            <div class="mb-12">
+                <h2 class="text-2xl font-bold text-white mb-6">Sales Statistics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="content-card p-6 rounded-xl"><p class="text-sm text-gray-400">Total Revenue</p><p id="stats-total-revenue" class="text-3xl font-bold text-green-400"></p></div>
+                    <div class="content-card p-6 rounded-xl"><p class="text-sm text-gray-400">Total Orders</p><p id="stats-total-orders" class="text-3xl font-bold"></p></div>
+                    <div class="content-card p-6 rounded-xl"><p class="text-sm text-gray-400">Avg. Order Value</p><p id="stats-avg-order" class="text-3xl font-bold"></p></div>
+                    <div class="content-card p-6 rounded-xl"><p class="text-sm text-gray-400">Top Customer</p><p id="stats-top-customer" class="text-xl font-bold text-fuchsia-400"></p></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+                    <div class="content-card p-6 rounded-xl lg:col-span-2"><canvas id="revenue-chart"></canvas></div>
+                    <div class="content-card p-6 rounded-xl"><canvas id="sales-by-category-chart"></canvas></div>
+                </div>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-white mb-6">Management Tools</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Home Page</h3><p class="text-gray-400 mt-2">Edit hero section, offers, and featured content.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Edit Home Page</button></div>
                 <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Services Page</h3><p class="text-gray-400 mt-2">Manage service details, images, and descriptions.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Edit Services</button></div>
@@ -127,6 +145,10 @@
             const punchLogBody = document.getElementById('punch-log-body');
             const totalHoursEl = document.getElementById('total-hours');
 
+            // --- Chart instances ---
+            let revenueChartInstance;
+            let categoryChartInstance;
+
             function handleLogin(event) {
                 event.preventDefault();
                 const emailInput = document.getElementById('email').value;
@@ -168,6 +190,7 @@
                 if (user) {
                     if (user.role === 'Admin') {
                         document.getElementById('admin-welcome').textContent = `Welcome, ${user.name}!`;
+                        renderAdminDashboard();
                         adminView.style.display = 'block';
                     } else if (user.role === 'Employee') {
                         document.getElementById('employee-welcome').textContent = `Welcome, ${user.name}!`;
@@ -180,6 +203,83 @@
                 } else {
                     loginView.style.display = 'block';
                 }
+            }
+            
+            function renderAdminDashboard() {
+                // Sample data for stats
+                const allOrders = [
+                    { id: 1055, customer: 'Jane Doe', email: 'jane@email.com', date: '2025-07-01', service: 'Signs', status: 'In Production', total: 75.00 },
+                    { id: 1054, customer: 'John Smith', email: 'john@email.com', date: '2025-06-30', service: 'Print', status: 'Completed', total: 45.50 },
+                    { id: 1053, customer: 'Admin', email: 'admin@grafikspot.com', date: '2025-06-29', service: 'Apparel', status: 'Completed', total: 120.00 },
+                    { id: 1052, customer: 'John Smith', email: 'john@email.com', date: '2025-06-28', service: 'Apparel', status: 'Completed', total: 250.00 },
+                    { id: 1051, customer: 'Jane Doe', email: 'jane@email.com', date: '2025-06-27', service: 'Print', status: 'Pending', total: 60.00 },
+                ];
+
+                // Calculate KPIs
+                const totalRevenue = allOrders.reduce((sum, order) => sum + order.total, 0);
+                const totalOrders = allOrders.length;
+                const avgOrderValue = totalRevenue / totalOrders;
+                
+                const customerSpending = allOrders.reduce((acc, order) => {
+                    acc[order.customer] = (acc[order.customer] || 0) + order.total;
+                    return acc;
+                }, {});
+                const topCustomer = Object.keys(customerSpending).reduce((a, b) => customerSpending[a] > customerSpending[b] ? a : b);
+
+                // Update KPI cards
+                document.getElementById('stats-total-revenue').textContent = `$${totalRevenue.toFixed(2)}`;
+                document.getElementById('stats-total-orders').textContent = totalOrders;
+                document.getElementById('stats-avg-order').textContent = `$${avgOrderValue.toFixed(2)}`;
+                document.getElementById('stats-top-customer').textContent = topCustomer;
+
+                // --- Render Charts ---
+                // Revenue Chart
+                const revenueCtx = document.getElementById('revenue-chart').getContext('2d');
+                if(revenueChartInstance) revenueChartInstance.destroy();
+                revenueChartInstance = new Chart(revenueCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [120, 190, 300, 500, 210, 350, 450],
+                            borderColor: '#D90077',
+                            backgroundColor: 'rgba(217, 0, 119, 0.2)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { ticks: { color: '#9ca3af' } }, x: { ticks: { color: '#9ca3af' } } }
+                    }
+                });
+
+                // Sales by Category Chart
+                const categoryCtx = document.getElementById('sales-by-category-chart').getContext('2d');
+                const salesByCategory = allOrders.reduce((acc, order) => {
+                    acc[order.service] = (acc[order.service] || 0) + order.total;
+                    return acc;
+                }, {});
+                if(categoryChartInstance) categoryChartInstance.destroy();
+                categoryChartInstance = new Chart(categoryCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(salesByCategory),
+                        datasets: [{
+                            label: 'Sales',
+                            data: Object.values(salesByCategory),
+                            backgroundColor: ['#c026d3', '#7e22ce', '#D90077'],
+                        }]
+                    },
+                     options: {
+                        responsive: true,
+                        indexAxis: 'y',
+                        plugins: { legend: { display: false } },
+                        scales: { y: { ticks: { color: '#9ca3af' } }, x: { ticks: { color: '#9ca3af' } } }
+                    }
+                });
             }
             
             function renderEmployeeDashboard() {
