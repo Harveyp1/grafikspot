@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - The Grafik Spot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #111827, #1e1b4b, #4c1d95); background-attachment: fixed; }
+        .content-card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .text-logo-pink { color: #D90077; }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Admin Header -->
+    <header class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-white">Admin Dashboard</h1>
+            <a href="index.html" class="text-gray-300 hover:text-fuchsia-500">Logout</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h2 class="text-3xl font-bold text-white mb-8">Content Management</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="content-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-bold text-white">Home Page</h3>
+                <p class="text-gray-400 mt-2">Edit hero section, offers, and featured content.</p>
+                <button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Edit Home Page</button>
+            </div>
+            <div class="content-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-bold text-white">Services Page</h3>
+                <p class="text-gray-400 mt-2">Manage service details, images, and descriptions.</p>
+                <button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Edit Services</button>
+            </div>
+            <div class="content-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-bold text-white">Team Members</h3>
+                <p class="text-gray-400 mt-2">Add, remove, or update team member information.</p>
+                <button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Manage Team</button>
+            </div>
+             <div class="content-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-bold text-white">User Management</h3>
+                <p class="text-gray-400 mt-2">View and manage customer and employee accounts.</p>
+                <button class="mt-4 bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">Manage Users</button>
+            </div>
+             <div class="content-card p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-bold text-white">Orders</h3>
+                <p class="text-gray-400 mt-2">View and process customer orders and inquiries.</p>
+                <button class="mt-4 bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">View Orders</button>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

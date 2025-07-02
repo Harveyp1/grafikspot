@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team - The Grafik Spot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #111827, #1e1b4b, #4c1d95); background-attachment: fixed; }
+        .content-card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .text-logo-pink { color: #D90077; }
+        .ring-logo-pink { ring-color: #D90077; }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-transparent backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center border-b border-gray-700/50">
+            <a href="index.html"><img src="https://raw.githubusercontent.com/Harveyp1/grafikspot/main/grafik-logowhite.png" alt="The Grafik Spot Logo" class="h-12 w-auto"></a>
+            <div class="flex items-center">
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-fuchsia-500">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-fuchsia-500">About</a>
+                    <a href="services.html" class="text-gray-300 hover:text-fuchsia-500">Services</a>
+                    <a href="team.html" class="text-fuchsia-500 font-bold">Team</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-fuchsia-500">Contact</a>
+                </nav>
+                <div class="hidden md:flex items-center space-x-4 ml-6 pl-6 border-l border-gray-700/50">
+                    <a href="login.html" class="bg-logo-pink text-white font-semibold py-2 px-4 rounded-lg hover:bg-logo-pink-dark transition-colors">Account</a>
+                </div>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <section class="text-center content-card rounded-2xl p-10 md:p-16 shadow-2xl">
+            <h1 class="text-4xl font-extrabold text-white">Our Amazing Team</h1>
+            <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+                Meet the professionals who bring your vision to life.
+            </p>
+        </section>
+        <section class="mt-16 grid sm:grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="content-card rounded-2xl shadow-xl p-8 text-center">
+                <img class="w-32 h-32 rounded-full mx-auto mb-4 ring-4 ring-logo-pink" src="https://placehold.co/200x200/1e1b4b/ffffff?text=SG" alt="Sandra Garcia">
+                <h2 class="text-2xl font-bold text-white">Sandra Garcia</h2>
+                <p class="font-semibold text-logo-pink">Customer Service Specialist</p>
+                <p class="mt-2 text-gray-400">Administration</p>
+            </div>
+            <div class="content-card rounded-2xl shadow-xl p-8 text-center">
+                <img class="w-32 h-32 rounded-full mx-auto mb-4 ring-4 ring-purple-500" src="https://placehold.co/200x200/1e1b4b/ffffff?text=A" alt="Arnold">
+                <h2 class="text-2xl font-bold text-white">Arnold</h2>
+                <p class="font-semibold text-purple-400">Design and Production</p>
+                <p class="mt-2 text-gray-400">Design</p>
+            </div>
+            <div class="content-card rounded-2xl shadow-xl p-8 text-center">
+                <img class="w-32 h-32 rounded-full mx-auto mb-4 ring-4 ring-fuchsia-500" src="https://placehold.co/200x200/1e1b4b/ffffff?text=JA" alt="Joe Altimirano">
+                <h2 class="text-2xl font-bold text-white">Joe Altimirano</h2>
+                <p class="font-semibold text-fuchsia-400">Advertising & Marketing</p>
+                <p class="mt-2 text-gray-400">Consultant</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900/80 text-white mt-20 backdrop-blur-md border-t border-gray-700/50">
+        <!-- Footer content here -->
+    </footer>
+
+</body>
+</html>
