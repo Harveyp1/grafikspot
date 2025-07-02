@@ -19,8 +19,8 @@
     <!-- Admin Header -->
     <header class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-white">Admin Dashboard</h1>
-            <a href="index.html" class="text-gray-300 hover:text-fuchsia-500">Logout</a>
+            <h1 id="admin-welcome" class="text-xl font-bold text-white">Admin Dashboard</h1>
+            <button id="logout-button" class="text-gray-300 hover:text-fuchsia-500">Logout</button>
         </div>
     </header>
 
@@ -56,5 +56,31 @@
         </div>
     </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = JSON.parse(localStorage.getItem('loggedInUser'));
+            const welcomeMessage = document.getElementById('admin-welcome');
+            const logoutButton = document.getElementById('logout-button');
+
+            // If no user is logged in, redirect to login page
+            if (!user || user.role !== 'Admin') {
+                window.location.href = 'login.html';
+                return; // Stop script execution
+            }
+
+            // Greet the admin
+            if (welcomeMessage) {
+                welcomeMessage.textContent = `Welcome, ${user.name}!`;
+            }
+
+            // Handle logout
+            if (logoutButton) {
+                logoutButton.addEventListener('click', () => {
+                    localStorage.removeItem('loggedInUser');
+                    window.location.href = 'index.html';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
