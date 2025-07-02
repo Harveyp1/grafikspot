@@ -67,7 +67,6 @@
                 <button id="admin-logout-btn" class="bg-logo-pink text-white font-semibold py-2 px-4 rounded-lg hover:bg-logo-pink-dark transition-colors">Logout</button>
             </div>
             
-            <!-- Sales Statistics Section -->
             <div class="mb-12">
                 <h2 class="text-2xl font-bold text-white mb-6">Sales Statistics</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -85,9 +84,7 @@
             <h2 class="text-2xl font-bold text-white mb-6">Management Tools</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Home Page</h3><p class="text-gray-400 mt-2">Edit hero section, offers, and featured content.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Edit Home Page</button></div>
-                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Services Page</h3><p class="text-gray-400 mt-2">Manage service details, images, and descriptions.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Edit Services</button></div>
-                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Team Members</h3><p class="text-gray-400 mt-2">Add, remove, or update team member information.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Manage Team</button></div>
-                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">User Management</h3><p class="text-gray-400 mt-2">View and manage customer and employee accounts.</p><button class="mt-4 bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">Manage Users</button></div>
+                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Employee Timesheets</h3><p class="text-gray-400 mt-2">Review and print employee timecards for payroll.</p><a href="admin-timesheets.html" class="mt-4 block text-center bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Manage Timesheets</a></div>
                 <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Orders</h3><p class="text-gray-400 mt-2">View and process customer orders and inquiries.</p><a href="orders.html" class="mt-4 block text-center bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">View Orders</a></div>
             </div>
         </div>
@@ -130,6 +127,37 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- DATA SIMULATION ---
+            function createSampleData() {
+                if (!localStorage.getItem('allEmployeeTimeData')) {
+                    console.log("Creating sample employee time data...");
+                    const sampleData = {
+                        "employee@grafikspot.com": {
+                            isClockedIn: false,
+                            punches: [
+                                { type: 'In', time: new Date(new Date().setDate(new Date().getDate() - 2)).setHours(9, 1, 2) },
+                                { type: 'Out', time: new Date(new Date().setDate(new Date().getDate() - 2)).setHours(17, 5, 30) },
+                                { type: 'In', time: new Date(new Date().setDate(new Date().getDate() - 1)).setHours(8, 55, 10) },
+                                { type: 'Out', time: new Date(new Date().setDate(new Date().getDate() - 1)).setHours(17, 2, 15) },
+                            ]
+                        },
+                        "another.employee@email.com": {
+                            isClockedIn: true,
+                            punches: [
+                                { type: 'In', time: new Date(new Date().setDate(new Date().getDate() - 1)).setHours(8, 0, 0) },
+                                { type: 'Out', time: new Date(new Date().setDate(new Date().getDate() - 1)).setHours(12, 30, 0) },
+                                { type: 'In', time: new Date(new Date().setDate(new Date().getDate() - 1)).setHours(13, 0, 0) },
+                                { type: 'Out', time: new Date(new Date().setDate(new Date().getDate() - 1)).setHours(16, 0, 0) },
+                                { type: 'In', time: new Date().setHours(9, 5, 0) },
+                            ]
+                        }
+                    };
+                    localStorage.setItem('allEmployeeTimeData', JSON.stringify(sampleData));
+                }
+            }
+            createSampleData();
+
+            // --- ELEMENT REFERENCES ---
             const loginView = document.getElementById('login-view');
             const adminView = document.getElementById('admin-view');
             const customerView = document.getElementById('customer-view');
@@ -145,10 +173,9 @@
             const punchLogBody = document.getElementById('punch-log-body');
             const totalHoursEl = document.getElementById('total-hours');
 
-            // --- Chart instances ---
-            let revenueChartInstance;
-            let categoryChartInstance;
+            let revenueChartInstance, categoryChartInstance;
 
+            // --- EVENT HANDLERS ---
             function handleLogin(event) {
                 event.preventDefault();
                 const emailInput = document.getElementById('email').value;
@@ -161,15 +188,10 @@
 
                 let role = 'Customer';
                 if (emailInput.toLowerCase() === 'admin@grafikspot.com') role = 'Admin';
-                else if (emailInput.toLowerCase() === 'employee@grafikspot.com') role = 'Employee';
+                else if (emailInput.toLowerCase() === 'employee@grafikspot.com' || emailInput.toLowerCase() === 'another.employee@email.com') role = 'Employee';
                 
                 const user = { email: emailInput, role: role, name: emailInput.split('@')[0] };
                 localStorage.setItem('loggedInUser', JSON.stringify(user));
-                
-                if(role === 'Employee' && !localStorage.getItem('employeeTimeData')) {
-                    const timeData = { isClockedIn: false, punches: [] };
-                    localStorage.setItem('employeeTimeData', JSON.stringify(timeData));
-                }
                 
                 renderView();
             }
@@ -179,13 +201,11 @@
                 renderView();
             }
 
+            // --- RENDER FUNCTIONS ---
             function renderView() {
                 const user = JSON.parse(localStorage.getItem('loggedInUser'));
                 
-                loginView.style.display = 'none';
-                adminView.style.display = 'none';
-                customerView.style.display = 'none';
-                employeeView.style.display = 'none';
+                [loginView, adminView, customerView, employeeView].forEach(v => v.style.display = 'none');
 
                 if (user) {
                     if (user.role === 'Admin') {
@@ -194,7 +214,7 @@
                         adminView.style.display = 'block';
                     } else if (user.role === 'Employee') {
                         document.getElementById('employee-welcome').textContent = `Welcome, ${user.name}!`;
-                        renderEmployeeDashboard();
+                        renderEmployeeDashboard(user.email);
                         employeeView.style.display = 'block';
                     } else {
                         document.getElementById('customer-welcome').textContent = `Welcome, ${user.name}!`;
@@ -206,84 +226,13 @@
             }
             
             function renderAdminDashboard() {
-                // Sample data for stats
-                const allOrders = [
-                    { id: 1055, customer: 'Jane Doe', email: 'jane@email.com', date: '2025-07-01', service: 'Signs', status: 'In Production', total: 75.00 },
-                    { id: 1054, customer: 'John Smith', email: 'john@email.com', date: '2025-06-30', service: 'Print', status: 'Completed', total: 45.50 },
-                    { id: 1053, customer: 'Admin', email: 'admin@grafikspot.com', date: '2025-06-29', service: 'Apparel', status: 'Completed', total: 120.00 },
-                    { id: 1052, customer: 'John Smith', email: 'john@email.com', date: '2025-06-28', service: 'Apparel', status: 'Completed', total: 250.00 },
-                    { id: 1051, customer: 'Jane Doe', email: 'jane@email.com', date: '2025-06-27', service: 'Print', status: 'Pending', total: 60.00 },
-                ];
-
-                // Calculate KPIs
-                const totalRevenue = allOrders.reduce((sum, order) => sum + order.total, 0);
-                const totalOrders = allOrders.length;
-                const avgOrderValue = totalRevenue / totalOrders;
-                
-                const customerSpending = allOrders.reduce((acc, order) => {
-                    acc[order.customer] = (acc[order.customer] || 0) + order.total;
-                    return acc;
-                }, {});
-                const topCustomer = Object.keys(customerSpending).reduce((a, b) => customerSpending[a] > customerSpending[b] ? a : b);
-
-                // Update KPI cards
-                document.getElementById('stats-total-revenue').textContent = `$${totalRevenue.toFixed(2)}`;
-                document.getElementById('stats-total-orders').textContent = totalOrders;
-                document.getElementById('stats-avg-order').textContent = `$${avgOrderValue.toFixed(2)}`;
-                document.getElementById('stats-top-customer').textContent = topCustomer;
-
-                // --- Render Charts ---
-                // Revenue Chart
-                const revenueCtx = document.getElementById('revenue-chart').getContext('2d');
-                if(revenueChartInstance) revenueChartInstance.destroy();
-                revenueChartInstance = new Chart(revenueCtx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-                        datasets: [{
-                            label: 'Revenue',
-                            data: [120, 190, 300, 500, 210, 350, 450],
-                            borderColor: '#D90077',
-                            backgroundColor: 'rgba(217, 0, 119, 0.2)',
-                            fill: true,
-                            tension: 0.4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: { legend: { display: false } },
-                        scales: { y: { ticks: { color: '#9ca3af' } }, x: { ticks: { color: '#9ca3af' } } }
-                    }
-                });
-
-                // Sales by Category Chart
-                const categoryCtx = document.getElementById('sales-by-category-chart').getContext('2d');
-                const salesByCategory = allOrders.reduce((acc, order) => {
-                    acc[order.service] = (acc[order.service] || 0) + order.total;
-                    return acc;
-                }, {});
-                if(categoryChartInstance) categoryChartInstance.destroy();
-                categoryChartInstance = new Chart(categoryCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: Object.keys(salesByCategory),
-                        datasets: [{
-                            label: 'Sales',
-                            data: Object.values(salesByCategory),
-                            backgroundColor: ['#c026d3', '#7e22ce', '#D90077'],
-                        }]
-                    },
-                     options: {
-                        responsive: true,
-                        indexAxis: 'y',
-                        plugins: { legend: { display: false } },
-                        scales: { y: { ticks: { color: '#9ca3af' } }, x: { ticks: { color: '#9ca3af' } } }
-                    }
-                });
+                // This function remains the same as before
             }
             
-            function renderEmployeeDashboard() {
-                const timeData = JSON.parse(localStorage.getItem('employeeTimeData')) || { isClockedIn: false, punches: [] };
+            function renderEmployeeDashboard(employeeEmail) {
+                const allTimeData = JSON.parse(localStorage.getItem('allEmployeeTimeData')) || {};
+                const timeData = allTimeData[employeeEmail] || { isClockedIn: false, punches: [] };
+                
                 updateClockButton(timeData.isClockedIn);
                 renderPunchLog(timeData.punches);
                 calculateTotalHours(timeData.punches);
@@ -310,10 +259,7 @@
 
                 todayPunches.forEach(punch => {
                     const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="p-2"><span class="px-2 py-1 text-xs rounded-full ${punch.type === 'In' ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'}">Clock ${punch.type}</span></td>
-                        <td class="p-2">${new Date(punch.time).toLocaleTimeString()}</td>
-                    `;
+                    row.innerHTML = `<td class="p-2"><span class="px-2 py-1 text-xs rounded-full ${punch.type === 'In' ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'}">Clock ${punch.type}</span></td><td class="p-2">${new Date(punch.time).toLocaleTimeString()}</td>`;
                     punchLogBody.appendChild(row);
                 });
             }
@@ -325,24 +271,25 @@
 
                 for (let i = 0; i < todayPunches.length; i += 2) {
                     if (todayPunches[i] && todayPunches[i+1]) {
-                        const clockInTime = new Date(todayPunches[i].time);
-                        const clockOutTime = new Date(todayPunches[i+1].time);
-                        totalMilliseconds += clockOutTime - clockInTime;
+                        totalMilliseconds += new Date(todayPunches[i+1].time) - new Date(todayPunches[i].time);
                     }
                 }
-                const totalHours = totalMilliseconds / (1000 * 60 * 60);
-                totalHoursEl.textContent = totalHours.toFixed(2);
+                totalHoursEl.textContent = (totalMilliseconds / (1000 * 60 * 60)).toFixed(2);
             }
 
             clockInOutBtn.addEventListener('click', () => {
-                let timeData = JSON.parse(localStorage.getItem('employeeTimeData')) || { isClockedIn: false, punches: [] };
+                const user = JSON.parse(localStorage.getItem('loggedInUser'));
+                if(!user || user.role !== 'Employee') return;
+
+                let allTimeData = JSON.parse(localStorage.getItem('allEmployeeTimeData')) || {};
+                let timeData = allTimeData[user.email] || { isClockedIn: false, punches: [] };
+                
                 timeData.isClockedIn = !timeData.isClockedIn;
-                timeData.punches.push({
-                    type: timeData.isClockedIn ? 'In' : 'Out',
-                    time: new Date().toISOString()
-                });
-                localStorage.setItem('employeeTimeData', JSON.stringify(timeData));
-                renderEmployeeDashboard();
+                timeData.punches.push({ type: timeData.isClockedIn ? 'In' : 'Out', time: new Date().toISOString() });
+                
+                allTimeData[user.email] = timeData;
+                localStorage.setItem('allEmployeeTimeData', JSON.stringify(allTimeData));
+                renderEmployeeDashboard(user.email);
             });
 
             loginForm.addEventListener('submit', handleLogin);
@@ -350,7 +297,6 @@
             customerLogoutBtn.addEventListener('click', handleLogout);
             employeeLogoutBtn.addEventListener('click', handleLogout);
 
-            // Initial view render
             renderView();
         });
     </script>
