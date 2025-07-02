@@ -70,7 +70,7 @@
                 <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Services Page</h3><p class="text-gray-400 mt-2">Manage service details, images, and descriptions.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Edit Services</button></div>
                 <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Team Members</h3><p class="text-gray-400 mt-2">Add, remove, or update team member information.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Manage Team</button></div>
                 <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">User Management</h3><p class="text-gray-400 mt-2">View and manage customer and employee accounts.</p><button class="mt-4 bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">Manage Users</button></div>
-                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Orders</h3><p class="text-gray-400 mt-2">View and process customer orders and inquiries.</p><button class="mt-4 bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">View Orders</button></div>
+                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Orders</h3><p class="text-gray-400 mt-2">View and process customer orders and inquiries.</p><a href="orders.html" class="mt-4 block text-center bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">View Orders</a></div>
             </div>
         </div>
         
@@ -81,50 +81,11 @@
                 <button id="employee-logout-btn" class="bg-logo-pink text-white font-semibold py-2 px-4 rounded-lg hover:bg-logo-pink-dark transition-colors">Logout</button>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Time Clock Card -->
-                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-1">
-                    <h3 class="text-xl font-bold text-white">Time Clock</h3>
-                    <p id="clock-status" class="text-gray-400 mt-2">You are currently clocked out.</p>
-                    <button id="clock-in-out-btn" class="mt-4 bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700 w-full">Clock In</button>
-                    <div class="mt-4">
-                        <h4 class="font-semibold text-white">Total Hours Today: <span id="total-hours">0.00</span></h4>
-                    </div>
-                </div>
-                
-                <!-- Punch Log Card -->
-                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-2">
-                    <h3 class="text-xl font-bold text-white">Today's Punch Log</h3>
-                    <div class="mt-4 h-48 overflow-y-auto">
-                        <table class="w-full text-left">
-                            <thead class="sticky top-0 bg-gray-900/50">
-                                <tr>
-                                    <th class="p-2">Status</th>
-                                    <th class="p-2">Time</th>
-                                </tr>
-                            </thead>
-                            <tbody id="punch-log-body">
-                                <!-- Punches will be added here by JS -->
-                            </tbody>
-                        </table>
-                    </div>
-                    <a href="timesheet.html" class="mt-4 block text-center bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">View Full Timesheet</a>
-                </div>
-
-                <!-- Today's Tasks & Team Notes -->
-                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-3">
-                    <h3 class="text-xl font-bold text-white">Today's Tasks</h3>
-                    <ul class="mt-4 space-y-2 text-gray-300">
-                        <li class="p-3 bg-gray-900/50 rounded-md">Order #1054: 500 Business Cards - Print & Cut</li>
-                        <li class="p-3 bg-gray-900/50 rounded-md">Order #1052: 24 T-Shirts - Screen Print Prep</li>
-                        <li class="p-3 bg-gray-900/50 rounded-md">Order #1055: Large Vinyl Banner - Grommeting</li>
-                    </ul>
-                </div>
-                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-3">
-                    <h3 class="text-xl font-bold text-white">Team Notes</h3>
-                    <div class="mt-4 p-3 bg-yellow-900/50 border-l-4 border-yellow-400 rounded-md">
-                        <p class="text-yellow-200">Reminder: Please clean the screen printing press after each use. - Management</p>
-                    </div>
-                </div>
+                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-1"><h3 class="text-xl font-bold text-white">Time Clock</h3><p id="clock-status" class="text-gray-400 mt-2">You are currently clocked out.</p><button id="clock-in-out-btn" class="mt-4 bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700 w-full">Clock In</button><div class="mt-4"><h4 class="font-semibold text-white">Total Hours Today: <span id="total-hours">0.00</span></h4></div></div>
+                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-2"><h3 class="text-xl font-bold text-white">Today's Punch Log</h3><div class="mt-4 h-48 overflow-y-auto"><table class="w-full text-left"><thead class="sticky top-0 bg-gray-900/50"><tr><th class="p-2">Status</th><th class="p-2">Time</th></tr></thead><tbody id="punch-log-body"></tbody></table></div><a href="timesheet.html" class="mt-4 block text-center bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">View Full Timesheet</a></div>
+                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-2"><h3 class="text-xl font-bold text-white">Today's Tasks / Assigned Orders</h3><ul class="mt-4 space-y-2 text-gray-300"><li class="p-3 bg-gray-900/50 rounded-md">Order #1054: 500 Business Cards - Print & Cut</li><li class="p-3 bg-gray-900/50 rounded-md">Order #1052: 24 T-Shirts - Screen Print Prep</li><li class="p-3 bg-gray-900/50 rounded-md">Order #1055: Large Vinyl Banner - Grommeting</li></ul></div>
+                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-1"><h3 class="text-xl font-bold text-white">Production Queue</h3><p class="text-gray-400 mt-2">View all active jobs in the production pipeline.</p><button class="mt-4 bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">View Production Board</button></div>
+                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-3"><h3 class="text-xl font-bold text-white">Team Notes</h3><div class="mt-4 p-3 bg-yellow-900/50 border-l-4 border-yellow-400 rounded-md"><p class="text-yellow-200">Reminder: Please clean the screen printing press after each use. - Management</p></div></div>
             </div>
         </div>
 
@@ -137,8 +98,8 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="content-card p-6 rounded-xl shadow-lg">
                     <h3 class="text-xl font-bold text-white">My Orders</h3>
-                    <p class="text-gray-400 mt-2">You have no recent orders.</p>
-                    <a href="services.html" class="mt-4 inline-block bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700">Place a New Order</a>
+                    <p class="text-gray-400 mt-2">View your order history and track current jobs.</p>
+                    <a href="orders.html" class="mt-4 inline-block bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700">View My Orders</a>
                 </div>
                 <div class="content-card p-6 rounded-xl shadow-lg">
                     <h3 class="text-xl font-bold text-white">Account Details</h3>
