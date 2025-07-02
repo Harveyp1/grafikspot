@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - The Grafik Spot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #111827, #1e1b4b, #4c1d95); background-attachment: fixed; }
+        .content-card { background-color: rgba(17, 24, 39, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .dark-input { background-color: rgba(31, 41, 55, 0.5); border-color: rgba(75, 85, 99, 1); color: white; }
+        .dark-input::placeholder { color: rgba(156, 163, 175, 1); }
+        .dark-input:focus { --tw-ring-opacity: 1; border-color: #D90077; }
+        .focus\:ring-logo-pink:focus { --tw-ring-color: #D90077; }
+        .text-logo-pink { color: #D90077; }
+        .bg-logo-pink { background-color: #D90077; }
+        .hover\:bg-logo-pink-dark:hover { background-color: #b50063; }
+        .view { display: none; }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-transparent backdrop-blur-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center border-b border-gray-700/50">
+            <a href="index.html"><img src="https://raw.githubusercontent.com/Harveyp1/grafikspot/main/grafik-logowhite.png" alt="The Grafik Spot Logo" class="h-12 w-auto" onerror="this.onerror=null; this.src='https://placehold.co/200x50/111827/ffffff?text=The+Grafik+Spot';"></a>
+            <a href="index.html" class="text-gray-300 hover:text-fuchsia-500">&larr; Back to Main Site</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Login View -->
+        <div id="login-view" class="view">
+            <div class="w-full max-w-md mx-auto">
+                <div class="content-card rounded-2xl p-8 shadow-2xl">
+                    <h1 class="text-3xl font-bold text-white text-center mb-6">Account Login</h1>
+                    <form id="login-form">
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-300 font-semibold mb-2">Email Address</label>
+                            <input type="email" id="email" class="dark-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-logo-pink" required placeholder="customer@email.com">
+                        </div>
+                        <div class="mb-6">
+                            <label for="password" class="block text-gray-300 font-semibold mb-2">Password</label>
+                            <input type="password" id="password" class="dark-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-logo-pink" required placeholder="password">
+                        </div>
+                        <div class="flex flex-col space-y-4">
+                            <button type="submit" class="w-full bg-logo-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-logo-pink-dark transition-colors duration-300 shadow-lg">Login</button>
+                        </div>
+                        <p class="text-center text-gray-400 mt-2 text-sm">Use <span class="font-mono text-fuchsia-400">admin@grafikspot.com</span> or <span class="font-mono text-purple-400">employee@grafikspot.com</span> for different views.</p>
+                        <p class="text-center text-gray-400 mt-6">
+                            Don't have an account? <a href="#" class="text-fuchsia-400 hover:underline">Register here</a>.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard View -->
+        <div id="admin-view" class="view">
+            <div class="flex justify-between items-center mb-8">
+                <h1 id="admin-welcome" class="text-3xl font-bold text-white"></h1>
+                <button id="admin-logout-btn" class="bg-logo-pink text-white font-semibold py-2 px-4 rounded-lg hover:bg-logo-pink-dark transition-colors">Logout</button>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Home Page</h3><p class="text-gray-400 mt-2">Edit hero section, offers, and featured content.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Edit Home Page</button></div>
+                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Services Page</h3><p class="text-gray-400 mt-2">Manage service details, images, and descriptions.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Edit Services</button></div>
+                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Team Members</h3><p class="text-gray-400 mt-2">Add, remove, or update team member information.</p><button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">Manage Team</button></div>
+                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">User Management</h3><p class="text-gray-400 mt-2">View and manage customer and employee accounts.</p><button class="mt-4 bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">Manage Users</button></div>
+                <div class="content-card p-6 rounded-xl shadow-lg"><h3 class="text-xl font-bold text-white">Orders</h3><p class="text-gray-400 mt-2">View and process customer orders and inquiries.</p><button class="mt-4 bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-700 w-full">View Orders</button></div>
+            </div>
+        </div>
+        
+        <!-- Employee Dashboard View -->
+        <div id="employee-view" class="view">
+            <div class="flex justify-between items-center mb-8">
+                <h1 id="employee-welcome" class="text-3xl font-bold text-white"></h1>
+                <button id="employee-logout-btn" class="bg-logo-pink text-white font-semibold py-2 px-4 rounded-lg hover:bg-logo-pink-dark transition-colors">Logout</button>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Time Clock Card -->
+                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-1">
+                    <h3 class="text-xl font-bold text-white">Time Clock</h3>
+                    <p id="clock-status" class="text-gray-400 mt-2">You are currently clocked out.</p>
+                    <button id="clock-in-out-btn" class="mt-4 bg-green-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-700 w-full">Clock In</button>
+                    <div class="mt-4">
+                        <h4 class="font-semibold text-white">Total Hours Today: <span id="total-hours">0.00</span></h4>
+                    </div>
+                </div>
+                
+                <!-- Punch Log Card -->
+                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-2">
+                    <h3 class="text-xl font-bold text-white">Today's Punch Log</h3>
+                    <div class="mt-4 h-48 overflow-y-auto">
+                        <table class="w-full text-left">
+                            <thead class="sticky top-0 bg-gray-900/50">
+                                <tr>
+                                    <th class="p-2">Status</th>
+                                    <th class="p-2">Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="punch-log-body">
+                                <!-- Punches will be added here by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="timesheet.html" class="mt-4 block text-center bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700 w-full">View Full Timesheet</a>
+                </div>
+
+                <!-- Today's Tasks & Team Notes -->
+                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-3">
+                    <h3 class="text-xl font-bold text-white">Today's Tasks</h3>
+                    <ul class="mt-4 space-y-2 text-gray-300">
+                        <li class="p-3 bg-gray-900/50 rounded-md">Order #1054: 500 Business Cards - Print & Cut</li>
+                        <li class="p-3 bg-gray-900/50 rounded-md">Order #1052: 24 T-Shirts - Screen Print Prep</li>
+                        <li class="p-3 bg-gray-900/50 rounded-md">Order #1055: Large Vinyl Banner - Grommeting</li>
+                    </ul>
+                </div>
+                <div class="content-card p-6 rounded-xl shadow-lg md:col-span-3">
+                    <h3 class="text-xl font-bold text-white">Team Notes</h3>
+                    <div class="mt-4 p-3 bg-yellow-900/50 border-l-4 border-yellow-400 rounded-md">
+                        <p class="text-yellow-200">Reminder: Please clean the screen printing press after each use. - Management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Dashboard View -->
+        <div id="customer-view" class="view">
+            <div class="flex justify-between items-center mb-8">
+                <h1 id="customer-welcome" class="text-3xl font-bold text-white"></h1>
+                <button id="customer-logout-btn" class="bg-logo-pink text-white font-semibold py-2 px-4 rounded-lg hover:bg-logo-pink-dark transition-colors">Logout</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="content-card p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-white">My Orders</h3>
+                    <p class="text-gray-400 mt-2">You have no recent orders.</p>
+                    <a href="services.html" class="mt-4 inline-block bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700">Place a New Order</a>
+                </div>
+                <div class="content-card p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-white">Account Details</h3>
+                    <p class="text-gray-400 mt-2">Manage your shipping and billing information.</p>
+                    <button class="mt-4 bg-fuchsia-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-fuchsia-700">Edit Details</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginView = document.getElementById('login-view');
+            const adminView = document.getElementById('admin-view');
+            const customerView = document.getElementById('customer-view');
+            const employeeView = document.getElementById('employee-view');
+            const loginForm = document.getElementById('login-form');
+            
+            const adminLogoutBtn = document.getElementById('admin-logout-btn');
+            const customerLogoutBtn = document.getElementById('customer-logout-btn');
+            const employeeLogoutBtn = document.getElementById('employee-logout-btn');
+            
+            const clockInOutBtn = document.getElementById('clock-in-out-btn');
+            const clockStatusEl = document.getElementById('clock-status');
+            const punchLogBody = document.getElementById('punch-log-body');
+            const totalHoursEl = document.getElementById('total-hours');
+
+            function handleLogin(event) {
+                event.preventDefault();
+                const emailInput = document.getElementById('email').value;
+                const passwordInput = document.getElementById('password').value;
+
+                if (!emailInput || !passwordInput) {
+                    alert('Please enter an email and password.');
+                    return;
+                }
+
+                let role = 'Customer';
+                if (emailInput.toLowerCase() === 'admin@grafikspot.com') role = 'Admin';
+                else if (emailInput.toLowerCase() === 'employee@grafikspot.com') role = 'Employee';
+                
+                const user = { email: emailInput, role: role, name: emailInput.split('@')[0] };
+                localStorage.setItem('loggedInUser', JSON.stringify(user));
+                
+                if(role === 'Employee' && !localStorage.getItem('employeeTimeData')) {
+                    const timeData = { isClockedIn: false, punches: [] };
+                    localStorage.setItem('employeeTimeData', JSON.stringify(timeData));
+                }
+                
+                renderView();
+            }
+
+            function handleLogout() {
+                localStorage.removeItem('loggedInUser');
+                renderView();
+            }
+
+            function renderView() {
+                const user = JSON.parse(localStorage.getItem('loggedInUser'));
+                
+                loginView.style.display = 'none';
+                adminView.style.display = 'none';
+                customerView.style.display = 'none';
+                employeeView.style.display = 'none';
+
+                if (user) {
+                    if (user.role === 'Admin') {
+                        document.getElementById('admin-welcome').textContent = `Welcome, ${user.name}!`;
+                        adminView.style.display = 'block';
+                    } else if (user.role === 'Employee') {
+                        document.getElementById('employee-welcome').textContent = `Welcome, ${user.name}!`;
+                        renderEmployeeDashboard();
+                        employeeView.style.display = 'block';
+                    } else {
+                        document.getElementById('customer-welcome').textContent = `Welcome, ${user.name}!`;
+                        customerView.style.display = 'block';
+                    }
+                } else {
+                    loginView.style.display = 'block';
+                }
+            }
+            
+            function renderEmployeeDashboard() {
+                const timeData = JSON.parse(localStorage.getItem('employeeTimeData')) || { isClockedIn: false, punches: [] };
+                updateClockButton(timeData.isClockedIn);
+                renderPunchLog(timeData.punches);
+                calculateTotalHours(timeData.punches);
+            }
+
+            function updateClockButton(isClockedIn) {
+                if (isClockedIn) {
+                    clockStatusEl.textContent = `You are currently clocked in.`;
+                    clockInOutBtn.textContent = 'Clock Out';
+                    clockInOutBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+                    clockInOutBtn.classList.add('bg-red-600', 'hover:bg-red-700');
+                } else {
+                    clockStatusEl.textContent = 'You are currently clocked out.';
+                    clockInOutBtn.textContent = 'Clock In';
+                    clockInOutBtn.classList.remove('bg-red-600', 'hover:bg-red-700');
+                    clockInOutBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+                }
+            }
+            
+            function renderPunchLog(punches) {
+                punchLogBody.innerHTML = '';
+                const today = new Date().toLocaleDateString();
+                const todayPunches = punches.filter(p => new Date(p.time).toLocaleDateString() === today);
+
+                todayPunches.forEach(punch => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="p-2"><span class="px-2 py-1 text-xs rounded-full ${punch.type === 'In' ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'}">Clock ${punch.type}</span></td>
+                        <td class="p-2">${new Date(punch.time).toLocaleTimeString()}</td>
+                    `;
+                    punchLogBody.appendChild(row);
+                });
+            }
+
+            function calculateTotalHours(punches) {
+                let totalMilliseconds = 0;
+                const today = new Date().toLocaleDateString();
+                const todayPunches = punches.filter(p => new Date(p.time).toLocaleDateString() === today);
+
+                for (let i = 0; i < todayPunches.length; i += 2) {
+                    if (todayPunches[i] && todayPunches[i+1]) {
+                        const clockInTime = new Date(todayPunches[i].time);
+                        const clockOutTime = new Date(todayPunches[i+1].time);
+                        totalMilliseconds += clockOutTime - clockInTime;
+                    }
+                }
+                const totalHours = totalMilliseconds / (1000 * 60 * 60);
+                totalHoursEl.textContent = totalHours.toFixed(2);
+            }
+
+            clockInOutBtn.addEventListener('click', () => {
+                let timeData = JSON.parse(localStorage.getItem('employeeTimeData')) || { isClockedIn: false, punches: [] };
+                timeData.isClockedIn = !timeData.isClockedIn;
+                timeData.punches.push({
+                    type: timeData.isClockedIn ? 'In' : 'Out',
+                    time: new Date().toISOString()
+                });
+                localStorage.setItem('employeeTimeData', JSON.stringify(timeData));
+                renderEmployeeDashboard();
+            });
+
+            loginForm.addEventListener('submit', handleLogin);
+            adminLogoutBtn.addEventListener('click', handleLogout);
+            customerLogoutBtn.addEventListener('click', handleLogout);
+            employeeLogoutBtn.addEventListener('click', handleLogout);
+
+            // Initial view render
+            renderView();
+        });
+    </script>
+</body>
+</html>
