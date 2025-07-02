@@ -54,7 +54,12 @@
             <button id="mobile-menu-button" class="md:hidden flex items-center text-gray-200"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 bg-gray-900/90 backdrop-blur-md">
-            <!-- Mobile nav links here -->
+            <a href="index.html" class="block py-2 text-fuchsia-500 font-bold">Home</a>
+            <a href="about.html" class="block py-2 text-gray-300 hover:text-fuchsia-500">About</a>
+            <a href="services.html" class="block py-2 text-gray-300 hover:text-fuchsia-500">Services</a>
+            <a href="team.html" class="block py-2 text-gray-300 hover:text-fuchsia-500">Team</a>
+            <a href="contact.html" class="block py-2 text-gray-300 hover:text-fuchsia-500">Contact</a>
+            <a href="login.html" class="block py-2 text-gray-300 hover:text-fuchsia-500">Account</a>
         </div>
     </header>
 
@@ -106,13 +111,97 @@
             </div>
         </section>
         
-        <!-- Other sections from home page -->
+        <!-- Why Choose Us Section -->
+        <section class="mt-20">
+            <h2 class="text-4xl font-bold text-center text-white drop-shadow-md">Why Choose The Grafik Spot?</h2>
+            <div class="mt-12 grid md:grid-cols-3 gap-8">
+                <div class="content-card p-8 rounded-2xl shadow-xl text-center">
+                    <svg class="w-12 h-12 mx-auto text-fuchsia-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                    <h3 class="text-2xl font-bold text-white mt-4">Unmatched Quality</h3>
+                    <p class="mt-2 text-gray-300">We use state-of-the-art equipment and premium materials to ensure every project is a masterpiece.</p>
+                </div>
+                <div class="content-card p-8 rounded-2xl shadow-xl text-center">
+                    <svg class="w-12 h-12 mx-auto text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <h3 class="text-2xl font-bold text-white mt-4">Expert Team</h3>
+                    <p class="mt-2 text-gray-300">Our experienced professionals are dedicated to providing expert advice and flawless execution.</p>
+                </div>
+                <div class="content-card p-8 rounded-2xl shadow-xl text-center">
+                    <svg class="w-12 h-12 mx-auto text-logo-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9M3 12a9 9 0 019-9m0 18a9 9 0 00-9-9m9-9h.01"></path></svg>
+                    <h3 class="text-2xl font-bold text-white mt-4">One-Stop Shop</h3>
+                    <p class="mt-2 text-gray-300">From print and signs to apparel, we're your single source for all branding and marketing needs.</p>
+                </div>
+            </div>
+        </section>
 
+        <!-- Our Simple Process Section -->
+        <section class="mt-20">
+            <h2 class="text-4xl font-bold text-center text-white drop-shadow-md">Our Simple Process</h2>
+            <div class="mt-12 grid md:grid-cols-3 gap-4 text-center text-white relative">
+                <div class="absolute top-1/2 left-0 w-full h-0.5 hidden md:block"><svg width="100%" height="100%"><line x1="0" y1="50%" x2="100%" y2="50%" stroke-width="2" stroke="rgba(255,255,255,0.2)" stroke-dasharray="8 8"/></svg></div>
+                <div class="relative content-card p-8 rounded-2xl shadow-xl">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-purple-600 w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold">1</div>
+                    <h3 class="text-2xl font-bold mt-8">Get a Quote</h3>
+                    <p class="mt-2 text-gray-300">Contact us with your idea, and we'll provide a detailed estimate.</p>
+                </div>
+                <div class="relative content-card p-8 rounded-2xl shadow-xl mt-12 md:mt-0">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-fuchsia-600 w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold">2</div>
+                    <h3 class="text-2xl font-bold mt-8">Approve the Design</h3>
+                    <p class="mt-2 text-gray-300">Our design team will create a proof for your review and approval.</p>
+                </div>
+                <div class="relative content-card p-8 rounded-2xl shadow-xl mt-12 md:mt-0">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-logo-pink w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold">3</div>
+                    <h3 class="text-2xl font-bold mt-8">We Print & Deliver</h3>
+                    <p class="mt-2 text-gray-300">Once approved, we bring your vision to life and get it to you quickly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="mt-20">
+            <h2 class="text-4xl font-bold text-center text-white drop-shadow-md">What Our Clients Say</h2>
+            <div class="mt-12 grid md:grid-cols-2 gap-8">
+                <div class="content-card p-8 rounded-2xl shadow-xl">
+                    <p class="text-gray-300 italic">"The Grafik Spot exceeded all our expectations. The quality of our new banners is fantastic, and the team was a pleasure to work with. Highly recommended!"</p>
+                    <p class="mt-4 font-bold text-fuchsia-400">- Marketing Director, Local Business</p>
+                </div>
+                <div class="content-card p-8 rounded-2xl shadow-xl">
+                    <p class="text-gray-300 italic">"I needed custom t-shirts for a company event on a tight deadline, and they delivered. The shirts look amazing, and the service was incredibly fast."</p>
+                    <p class="mt-4 font-bold text-fuchsia-400">- Event Coordinator, Tech Corp</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-900/80 text-white mt-20 backdrop-blur-md border-t border-gray-700/50">
-        <!-- Footer content -->
+        <div class="container mx-auto px-6 py-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <a href="index.html"><img src="https://raw.githubusercontent.com/Harveyp1/grafikspot/main/grafik-logowhite.png" alt="The Grafik Spot Logo" class="h-10 w-auto mb-2" onerror="this.onerror=null; this.src='https://placehold.co/200x50/111827/ffffff?text=The+Grafik+Spot';"></a>
+                    <p class="text-gray-400">Print, Signs, and Apparel Powers!</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold">Quick Links</h3>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-logo-pink">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-logo-pink">About</a></li>
+                        <li><a href="services.html" class="text-gray-300 hover:text-logo-pink">Services</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-logo-pink">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold">Follow Us</h3>
+                    <div class="mt-2 flex space-x-4">
+                        <a href="https://www.facebook.com/thegrafikspot" target="_blank" class="text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                        <a href="https://twitter.com/thegrafikspot" target="_blank" class="text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
+                        <a href="https://www.instagram.com/thegrafikspot/" target="_blank" class="text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363.416 2.427.465C9.53 2.013 9.884 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm6.406-11.845a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z" clip-rule="evenodd" /></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700/50 pt-6 text-center text-gray-400">
+                <p>&copy; 2024 The Grafik Spot. All Rights Reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -132,6 +221,13 @@
                 setTimeout(showSlides, 4000); // Change image every 4 seconds
             }
         }
+        
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
     </script>
 
 </body>
