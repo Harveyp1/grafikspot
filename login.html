@@ -25,7 +25,7 @@
     <!-- Header -->
     <header class="bg-transparent backdrop-blur-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center border-b border-gray-700/50">
-            <a href="index.html"><img src="https://raw.githubusercontent.com/Harveyp1/grafikspot/main/grafik-logowhite.png" alt="The Grafik Spot Logo" class="h-12 w-auto"></a>
+            <a href="index.html"><img src="https://raw.githubusercontent.com/Harveyp1/grafikspot/main/grafik-logowhite.png" alt="The Grafik Spot Logo" class="h-12 w-auto" onerror="this.onerror=null; this.src='https://placehold.co/200x50/111827/ffffff?text=The+Grafik+Spot';"></a>
             <a href="index.html" class="text-gray-300 hover:text-fuchsia-500">&larr; Back to Site</a>
         </div>
     </header>
@@ -35,16 +35,16 @@
         <div class="w-full max-w-md">
             <div class="content-card rounded-2xl p-8 shadow-2xl">
                 <h1 class="text-3xl font-bold text-white text-center mb-6">Account Login</h1>
-                <form action="#">
+                <form id="login-form">
                     <div class="mb-4">
                         <label for="email" class="block text-gray-300 font-semibold mb-2">Email Address</label>
-                        <input type="email" id="email" class="dark-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-logo-pink" required>
+                        <input type="email" id="email" class="dark-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-logo-pink" required value="admin@grafikspot.com">
                     </div>
                     <div class="mb-6">
                         <label for="password" class="block text-gray-300 font-semibold mb-2">Password</label>
-                        <input type="password" id="password" class="dark-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-logo-pink" required>
+                        <input type="password" id="password" class="dark-input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-logo-pink" required value="password">
                     </div>
-                    <button type="submit" class="w-full bg-logo-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-logo-pink-dark transition-colors duration-300 shadow-lg">Login</button>
+                    <button type="submit" class="w-full bg-logo-pink text-white font-bold py-3 px-6 rounded-lg hover:bg-logo-pink-dark transition-colors duration-300 shadow-lg">Login as Admin</button>
                     <p class="text-center text-gray-400 mt-4">
                         Don't have an account? <a href="#" class="text-fuchsia-400 hover:underline">Register here</a>.
                     </p>
@@ -52,6 +52,28 @@
             </div>
         </div>
     </main>
+    
+    <script>
+        // --- Login Simulation Script ---
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from actually submitting
+            
+            // For this simulation, we'll create a fake admin user object
+            const adminUser = {
+                email: 'admin@grafikspot.com',
+                role: 'Admin',
+                name: 'Admin'
+            };
+            
+            // Store the user object in localStorage to simulate a logged-in session
+            localStorage.setItem('loggedInUser', JSON.stringify(adminUser));
+            
+            // Redirect to the admin dashboard using a relative path with './'
+            // This is a more robust way to handle pathing in different environments.
+            window.location.href = './admin.html';
+        });
+    </script>
 
 </body>
 </html>
